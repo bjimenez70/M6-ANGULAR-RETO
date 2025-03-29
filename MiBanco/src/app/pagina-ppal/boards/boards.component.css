@@ -1,0 +1,14 @@
+.menuTransacciones {
+  border: 5px solid black;
+  background-color: tomato;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+
+}
+
+.cardContiner{
+  margin: 10px;
+  cursor: pointer;
+}

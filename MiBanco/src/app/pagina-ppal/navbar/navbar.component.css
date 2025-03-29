@@ -1,0 +1,23 @@
+.menuOpciones {
+    background-color: black;
+    color: white;
+    display :flex;
+    justify-content: space-around;
+
+}
+
+.menu {
+display: flex;
+gap: 30px;
+}
+
+.menu-item{
+    list-style: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.menu-item:hover  {
+    background-color: white;
+   color: black
+}

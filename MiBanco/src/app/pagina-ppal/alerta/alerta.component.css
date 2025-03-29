@@ -1,0 +1,8 @@
+.alertaContanier {
+  background-color: rgb(255, 234, 0);
+  display:flex; 
+  justify-content: center;
+  padding: 10px ;
+  font-weight: bold;
+  gap: 10px;
+}
