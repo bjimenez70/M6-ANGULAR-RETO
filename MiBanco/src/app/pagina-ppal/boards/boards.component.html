@@ -1,6 +1,7 @@
 <app-navbar></app-navbar>
 <div class="menuTransacciones border">
-  <div class="card cardContiner" *ngFor="let item of CartasAcciones" style="width: 18rem;">
+  <div class="card cardContiner" *ngFor="let item of CartasAcciones" style="width: 18rem;"
+    (click)="showMenuForId(item.modalId)">
 
     <img [src]="item.image" class="card-img-top" alt="...">
     <div class="card-body">
@@ -9,4 +10,205 @@
     </div>
   </div>
 
+</div>
+
+
+
+<!-- Modal ID 1 Saldo Actual-->
+<div class="modal fade" id="1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          Saldo Actual
+        </h5>
+      </div>
+      <div class="modal-body">
+        <h2> {{saldoActual | currency}}</h2>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal ID 2 depostio sucursal -->
+<div class="modal fade" id="2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          Deposito Sucursal
+        </h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formDepositoSucursal">
+          <div class="form-group">
+            <label for="montodepositar">Monto a depositar</label>
+            <input type="number" class="form-control" id="montodepositar" placeholder="Ingrese el monto"
+              formControlName="montodepositar" />
+          </div>
+          <button (click)="postBotonDepositoSucursal()" type="submit" class="btn btn-primary">montodepositar</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal ID 3 retiro cajero -->
+<div class="modal fade" id="3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          Retiro Cajero
+        </h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formRetiroCajero" (ngSubmit)="postBotonRetiroCajero()" >
+          <div class="form-group">
+            <label for="montoretiro">Monto a retirar</label>
+            <input type="number" class="form-control" id="montoretirar" placeholder="Ingrese el monto"
+              formControlName="montoretirar" />
+          </div>
+          <button  type="submit" class="btn btn-primary">montoretirar</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal ID 4 compra Web -->
+<div class="modal fade" id="4" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          Compra Web
+        </h5>
+      </div>
+      <div class="modal-body">
+        <h2> Compra Web</h2>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal ID 5 compra fisica -->
+<div class="modal fade" id="5" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          Compra Fisica
+        </h5>
+      </div>
+      <div class="modal-body">
+        <h2> Compra fisica</h2>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal ID 6 deposito otra cuenta -->
+<div class="modal fade" id="6" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          Deposito Otra cuenta
+        </h5>
+      </div>
+      <div class="modal-body">
+        <h2> Deposito Otra cuenta</h2>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal ID 7 consulta transacciones -->
+<div class="modal fade" id="7" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          Consulta transacciones
+        </h5>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped table-success">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Tipo de transacción</th>
+              <th>Monto</th>
+              <th>Fecha y Hora</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let historial of historialsaldo">
+              <td>{{ historial.id }}</td>
+              <td>{{ historial.tipo }}</td>
+              <td>{{ historial.monto | currency }}</td>
+              <td>{{ historial.fechaHora | date: 'short' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal ID 8 deposito cajero -->
+<div class="modal fade" id="8" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          Deposito Cajero
+        </h5>
+      </div>
+      <div class="modal-body">
+        <h2> Deposito Cajero</h2>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
