@@ -21,8 +21,8 @@ export class rutaGuard implements CanActivate {
     if (email  == 'bjimenez_85@hotmail.com') {
       return true;
     } else {
-     // this.router.navigate(['/login']);
-      return true;
+      this.router.navigate(['/login']);
+      return false;
 
     }
   }

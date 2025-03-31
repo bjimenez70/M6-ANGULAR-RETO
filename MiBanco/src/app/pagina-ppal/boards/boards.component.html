@@ -101,7 +101,14 @@
         </h5>
       </div>
       <div class="modal-body">
-        <h2> Compra Web</h2>
+        <form [formGroup]="formCompraWeb">
+          <div class="form-group">
+            <label for="montoweb">Monto a comprar Web</label>
+            <input type="number" class="form-control" id="montoweb" placeholder="Ingrese el monto"
+              formControlName="montoweb" />
+          </div>
+          <button (click)="postBotonCompraWeb()" type="submit" class="btn btn-primary">monto a Comprar Web</button>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">
@@ -122,7 +129,14 @@
         </h5>
       </div>
       <div class="modal-body">
-        <h2> Compra fisica</h2>
+        <form [formGroup]="formCompraFisica">
+          <div class="form-group">
+            <label for="montofisica">Monto a comprar Fisica</label>
+            <input type="number" class="form-control" id="montofisica" placeholder="Ingrese el monto"
+              formControlName="montofisica" />
+          </div>
+          <button (click)="postBotonCompraFisica()" type="submit" class="btn btn-primary">monto a Comprar Fisico</button>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">
@@ -143,7 +157,14 @@
         </h5>
       </div>
       <div class="modal-body">
-        <h2> Deposito Otra cuenta</h2>
+        <form [formGroup]="formDepositoOtraCuenta">
+          <div class="form-group">
+            <label for="montootracta">Monto a depositar</label>
+            <input type="number" class="form-control" id="montootracta" placeholder="Ingrese el monto"
+              formControlName="montootracta" />
+          </div>
+          <button (click)="postBotonDepositoOtraCta()" type="submit" class="btn btn-primary">monto a transferir</button>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">
@@ -202,7 +223,14 @@
         </h5>
       </div>
       <div class="modal-body">
-        <h2> Deposito Cajero</h2>
+        <form [formGroup]="formDepositoCajero">
+          <div class="form-group">
+            <label for="montocajero">Monto a depositar</label>
+            <input type="number" class="form-control" id="montocajero" placeholder="Ingrese el monto"
+              formControlName="montocajero" />
+          </div>
+          <button (click)="postBotonDepositoCajero()" type="submit" class="btn btn-primary">monto a transferir</button>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">

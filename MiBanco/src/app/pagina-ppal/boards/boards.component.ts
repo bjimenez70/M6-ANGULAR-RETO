@@ -14,8 +14,11 @@ export class BoardsComponent {
   private urlconsultahistorial = 'http://localhost:8080/cuenta/transacciones/1';
   historialsaldo: any;
   private urldepositosucursal = 'http://localhost:8080/cuenta/deposito/sucursal/1';
-  private urlretirocajero = 'http://localhost:8080/cuenta/retiro/cajero/1'
-
+  private urlretirocajero = 'http://localhost:8080/cuenta/retiro/cajero/1';
+  private urlcompraweb = 'http://localhost:8080/cuenta/compra/web/1';
+  private urlcomprafisica = 'http://localhost:8080/cuenta/compra/fisica/1';
+  private urldepositootracuenta  = 'http://localhost:8080/cuenta/deposito/otra/1'
+  private urldepositocajero = 'http://localhost:8080/cuenta/deposito/cajero/1'
 
   CartasAcciones = [
     {
@@ -52,7 +55,7 @@ export class BoardsComponent {
     },
     {
       title: 'Compra Web',
-      description: 'Realiza comprar de manera fácil y rápida desde la comodidad de tu hogar.',
+      description: 'Realiza comprar de manera fácil y rápida.',
       image: '/assets/Img9.png',
 
       modalId: '4'
@@ -80,12 +83,21 @@ export class BoardsComponent {
 
   ngOnInit(): void {
     this.initformDepositoSucursal();
-    this.initformRetiroCajero()
+    this.initformRetiroCajero();
+    this.initformCompraWeb();
+    this.initformCompraFisica();
+    this.initformDepositoOtraCuenta();
+    this.initformDepositoCajero();
+
   }
 
   modal!: any;
   formDepositoSucursal: FormGroup = new FormGroup({})
   formRetiroCajero: FormGroup = new FormGroup({})
+  formCompraWeb: FormGroup = new FormGroup({})
+  formCompraFisica: FormGroup = new FormGroup({})
+  formDepositoOtraCuenta: FormGroup = new FormGroup({})
+  formDepositoCajero: FormGroup = new FormGroup({})
 
 
   openModalById(modalId: string): void {
@@ -108,6 +120,30 @@ export class BoardsComponent {
     });
   }
 
+  initformCompraWeb(): void {
+    this.formCompraWeb = this.fb.group({
+      montoweb: [''],
+    });
+  }
+
+  initformCompraFisica(): void {
+    this.formCompraFisica = this.fb.group({
+      montofisica: [''],
+    });
+  }
+
+  initformDepositoOtraCuenta  (): void {
+    this.formDepositoOtraCuenta = this.fb.group({
+      montootracta: [''],
+    });
+  }
+
+  initformDepositoCajero  (): void {
+    this.formDepositoCajero = this.fb.group({
+      montocajero: [''],
+    });
+  }
+ 
   postDepositoSucursal(): void {
     this.TransaccionesService.postDepositoSucursal(this.urldepositosucursal, this.formDepositoSucursal.value.montodepositar).subscribe({
       next: (response) => {
@@ -178,6 +214,87 @@ export class BoardsComponent {
     this.closeModal();
     this.openModalById('1');
   }
+
+  // Compra Web-boton
+
+  postBotonCompraWeb(): void {
+    this.postCompraWeb();
+    this.formCompraWeb.reset();
+    this.closeModal();
+    this.openModalById('1');
+  }
+
+  postCompraWeb(): void {
+    this.TransaccionesService.postDepositoSucursal(this.urlcompraweb, this.formCompraWeb.value.montoweb).subscribe({
+      next: (response) => {
+        this.saldoActual = response;
+      },
+      error: (err) => {
+        this.closeModal();
+      },
+    })
+  }
+  //
+
+  // Compra Fisica
+
+postBotonCompraFisica(): void {
+  this.postCompraFisica();
+  this.formCompraFisica.reset();
+  this.closeModal();
+  this.openModalById('1');
+}
+
+postCompraFisica(): void {
+  this.TransaccionesService.postDepositoSucursal(this.urlcomprafisica, this.formCompraFisica.value.montofisica).subscribe({
+    next: (response) => {
+      this.saldoActual = response;
+    },
+    error: (err) => {
+      this.closeModal();
+    },
+  })
+}
+
+///
+postBotonDepositoOtraCta(): void {
+  this.postDepositoOtraCta();
+  this.formDepositoOtraCuenta.reset();
+  this.closeModal();
+  this.openModalById('1');
+}
+
+postDepositoOtraCta(): void {  
+   this.TransaccionesService.postDepositoSucursal(this.urldepositootracuenta, this.formDepositoOtraCuenta.value.montootracta).subscribe({
+    next: (response) => {
+      this.saldoActual = response;
+    },
+    error: (err) => {
+      this.closeModal();
+    },
+  })
+}
+
+// Depostio Cajeto
+
+postBotonDepositoCajero(): void {
+  this.postDepositoCajero();
+  this.formDepositoCajero.reset();
+  this.closeModal();
+  this.openModalById('1');
+}
+
+postDepositoCajero(): void {  
+   this.TransaccionesService.postDepositoSucursal(this.urldepositocajero, this.formDepositoCajero.value.montocajero).subscribe({
+    next: (response) => {
+      this.saldoActual = response;
+    },
+    error: (err) => {
+      this.closeModal();
+    },
+  })
+}
+
   showMenuForId(modalId: string): void {
     if (modalId === "1") {
       this.getConsultaSaldo(this.urlconsultasaldo);
